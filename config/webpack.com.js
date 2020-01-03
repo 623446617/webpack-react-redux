@@ -8,7 +8,7 @@ module.exports = (_env) => {
         entry: utils.getEntry(_env),
         output: {
             path: utils.getABSPath('dist'),
-            filename: `${utils.resourcePath}/[name].bundle.js`
+            filename: `${utils.resourcePath}/[name].bundle.[hash].js`
         },
         module: {
             rules: [
