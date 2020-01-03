@@ -1,7 +1,18 @@
 {
   "presets": [
-    "env",
-    "react"
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie 11"]
+      },
+      "useBuiltIns": "usage",
+      "debug": false
+    }],
+    "react",
+    "stage-0"
   ],
-  "plugins": []
+  "plugins": [
+    "transform-runtime",
+    "transform-class-properties",
+    "react-hot-loader/babel"
+  ]
 }

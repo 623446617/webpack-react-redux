@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const {CleanWebapckPlugin} = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./utils');
 
@@ -47,7 +47,7 @@ module.exports = (_env) => {
             ]
         },
         plugins: [
-            new CleanWebapckPlugin(),
+            new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 inject: 'body',
                 title: 'webpack-react-redux',
@@ -61,7 +61,19 @@ module.exports = (_env) => {
                     // 压缩内联CSS
                     minifyCSS: _env === utils.production
                 }
+            }),
+            // 引用全局第三方变量
+            new webpack.ProvidePlugin({
+                "_": "lodash",
+                "$": "jquery",
+                "jquery": "jquery"
             })
-        ]
+        ],
+        resolve: {
+            // 路径别名
+            alias: {
+
+            }
+        }
     };
 }
