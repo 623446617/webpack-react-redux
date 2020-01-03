@@ -4,8 +4,9 @@
  * @模块:
  **/
 import React, {Component} from 'react';
-
-export default class HomePage extends Component {
+import First from "./first.component";
+import Second from "./second.component";
+class HomePage extends Component {
     constructor(props) {
         super(props);
     }
@@ -23,8 +24,10 @@ export default class HomePage extends Component {
     render() {
         return (
             <div id='a' style={{'backgroundColor': 'blue'}}>
-                1233123123111
+                <First />
+                <Second/>
             </div>
         );
     }
 }
+export default HomePage;

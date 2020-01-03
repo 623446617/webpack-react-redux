@@ -5,7 +5,7 @@
  **/
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import home from './app/home-page.component/home-page.component'
+import home from './app/components/homepage.component';
 
 class BaseRouter extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class BaseRouter extends Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" component={home} />
+                    <Route path="/" component={home}/>
                 </Switch>
             </BrowserRouter>
         );
