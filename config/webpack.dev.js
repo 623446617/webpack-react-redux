@@ -8,13 +8,14 @@ module.exports = (_env) => {
 
     return merge(common(_env), {
         mode: 'development',
-        devtool: 'cheap-module-source-map',
+        devtool: 'cheap-module-eval-source-map',
         devServer: {
             hot: true,
             inline: true,
             open: true,
             host: utils.host,
             port: utils.port,
+            // index: 'main.html',
             contentBase: utils.getABSPath('dist'),
             proxy: proxy,
             overlay: {

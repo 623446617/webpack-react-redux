@@ -30,7 +30,7 @@ module.exports = (_env) => {
                     loader: 'url-loader',
                     options: {
                         name: `${utils.resourcePath}/images/[name].[ext]?[hash]`,
-                        limit: 10000
+                        limit: 1024 * 8 // 8kb以下不产生图片文件
                     }
                 },
                 {
