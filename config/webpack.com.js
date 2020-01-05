@@ -1,14 +1,22 @@
 const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const utils = require('./utils');
 
+
 module.exports = (_env) => {
+
+    const extractCSS = new ExtractTextPlugin({
+        disable: _env === utils.production,
+        filename: `${utils.resourcePath}/[name].css?[hash]`
+    });
+
     return {
         entry: utils.getEntry(_env),
         output: {
             path: utils.getABSPath('dist'),
-            filename: `${utils.resourcePath}/[name].bundle.[hash].js`
+            filename: `${utils.resourcePath}/[name].bundle.js?[hash]`
         },
         module: {
             rules: [
@@ -23,7 +31,11 @@ module.exports = (_env) => {
                 },
                 {
                     test: /\.css$/,
-                    loaders: ['style-loader', 'css-loader']
+                    use: extractCSS.extract({
+                        fallback: 'style-loader',
+                        use: 'css-loader'
+                    })
+                    // loaders: ['style-loader', 'css-loader']
                 },
                 {
                     test: /\.(png|jpg|jpeg|svg|gif)$/,
@@ -67,7 +79,8 @@ module.exports = (_env) => {
                 "_": "lodash",
                 "$": "jquery",
                 "jquery": "jquery"
-            })
+            }),
+            extractCSS
         ],
         resolve: {
             // 路径别名

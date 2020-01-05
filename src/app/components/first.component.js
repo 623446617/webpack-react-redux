@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import "./first.component.css"
 
 const mapStateToProps = (state, props) => {
     return {
@@ -23,7 +24,7 @@ class First extends Component {
     render() {
         const {clk} = this.props;
         return (
-            <div onClick={clk}>
+            <div className="first" onClick={clk}>
                 点击
             </div>
         );
